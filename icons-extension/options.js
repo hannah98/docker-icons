@@ -1,5 +1,5 @@
 import { DEFAULT_CONFIG, defaultPublicBase, normalizeFolder } from "./lib.js";
-import { checkRepo } from "./github.js";
+import { checkBranch, checkRepo } from "./github.js";
 
 const $ = (id) => document.getElementById(id);
 const FIELDS = ["owner", "repo", "branch", "folder", "publicBase"];
@@ -70,7 +70,11 @@ $("test").addEventListener("click", async () => {
   status("", "Testing…");
   try {
     const repo = await checkRepo(v);
-    status("ok", `Connected to ${repo.full_name} (${repo.private ? "private" : "public"}). Write access is only confirmed on the first upload.`);
+    if (repo.permissions && repo.permissions.push === false) {
+      return status("err", `Can read ${repo.full_name}, but this token can't write to it. Public repos are readable by any token, so this test passes even when the token isn't granted the repo. Edit the token on GitHub: Repository access must include this repo, and Contents must be Read and write.`);
+    }
+    await checkBranch(v);
+    status("ok", `Connected to ${repo.full_name} (${repo.private ? "private" : "public"}) with write access.`);
   } catch (err) {
     status("err", err.message);
   }

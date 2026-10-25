@@ -61,6 +61,15 @@ export async function putFile(cfg, path, base64, message, sha, fetchFn = fetch) 
   throw new GithubError(describeGithubError(res.status, body, res.headers), res.status);
 }
 
+/** Throws a clear error if the branch doesn't exist. */
+export async function checkBranch(cfg, fetchFn = fetch) {
+  const url = `${API}/repos/${encodeURIComponent(cfg.owner)}/${encodeURIComponent(cfg.repo)}/branches/${encodePath(cfg.branch)}`;
+  const { res, body } = await call(fetchFn, url, { headers: headers(cfg.token), cache: "no-store" });
+  if (res.status === 200) return;
+  if (res.status === 404) throw new GithubError(`Branch "${cfg.branch}" doesn't exist in ${cfg.owner}/${cfg.repo}. Check the repo's default branch (often "main" or "master").`, 404);
+  throw new GithubError(describeGithubError(res.status, body, res.headers), res.status);
+}
+
 /** For the options page "Test connection" button. */
 export async function checkRepo(cfg, fetchFn = fetch) {
   const url = `${API}/repos/${encodeURIComponent(cfg.owner)}/${encodeURIComponent(cfg.repo)}`;

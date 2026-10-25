@@ -169,7 +169,7 @@ export function describeGithubError(status, body, headers) {
       return `GitHub denied access (403). The token needs "Contents: Read and write" on this repo.${msg ? " GitHub says: " + msg : ""}`;
     }
     case 404:
-      return "Not found (404). Check owner, repo and branch in the options. Fine-grained tokens also return 404 when the token has no access to the repo.";
+      return "Not found (404). Check that the branch name exists (the repo's default may be 'master', not 'main'), then owner/repo, then that the token is granted this repo with Contents: Read and write (GitHub answers 404 instead of 403 for writes).";
     case 409:
       return `Conflict (409): the file changed while uploading. Try again.${msg ? " " + msg : ""}`;
     case 422:
