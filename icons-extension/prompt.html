@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Send to icons repo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Send to icons repo</h1>
+
+  <div class="preview"><img id="preview" alt="Image preview"></div>
+  <p id="meta" class="muted"></p>
+
+  <div id="warn" class="box warn" hidden></div>
+
+  <div id="form">
+    <label for="filename">Filename</label>
+    <input id="filename" type="text" spellcheck="false" autocomplete="off">
+    <p class="muted">Saves as <code id="target"></code></p>
+    <div class="row">
+      <button id="upload" class="primary" disabled>Upload</button>
+      <button id="cancel">Cancel</button>
+    </div>
+  </div>
+
+  <div id="overwrite" class="box warn" hidden>
+    <p><strong id="exists-name"></strong> already exists in the repo. Overwrite it?</p>
+    <div class="row">
+      <button id="overwrite-yes" class="danger">Overwrite</button>
+      <button id="overwrite-no">Cancel</button>
+    </div>
+  </div>
+
+  <div id="status" class="box" hidden></div>
+</main>
+<script type="module" src="prompt.js"></script>
+</body>
+</html>

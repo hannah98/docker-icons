@@ -1,0 +1,36 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff; --fg: #1b1f24; --muted: #667085; --line: #d0d5dd;
+  --accent: #2563eb; --warn-bg: #fff7e0; --warn-line: #e0b020;
+  --err-bg: #fdecec; --err-line: #d33; --ok-bg: #e8f7ee; --ok-line: #2a9d5c;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16181d; --fg: #e8eaed; --muted: #9aa0aa; --line: #3a3f48;
+    --accent: #5b8def; --warn-bg: #3a3118; --warn-line: #a88a22;
+    --err-bg: #3b1b1b; --err-line: #c44; --ok-bg: #173325; --ok-line: #2a9d5c;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.45 system-ui, sans-serif; }
+main { max-width: 560px; margin: 0 auto; padding: 16px; }
+h1 { font-size: 18px; margin: 0 0 12px; }
+.preview { display: flex; justify-content: center; padding: 12px; border: 1px solid var(--line); border-radius: 8px;
+  background: repeating-conic-gradient(#8883 0 25%, transparent 0 50%) 0 0 / 16px 16px; }
+.preview img { max-width: 200px; max-height: 200px; }
+.muted { color: var(--muted); margin: 6px 0; }
+label { display: block; font-weight: 600; margin: 12px 0 4px; }
+input[type=text], input[type=password] { width: 100%; padding: 8px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--bg); color: var(--fg); font: inherit; }
+.row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+button { padding: 8px 14px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--fg); font: inherit; cursor: pointer; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button.danger { background: var(--err-line); border-color: var(--err-line); color: #fff; }
+button:disabled { opacity: .5; cursor: default; }
+.box { margin-top: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; }
+.box p { margin: 0 0 4px; }
+.box.warn { background: var(--warn-bg); border-color: var(--warn-line); }
+.box.err { background: var(--err-bg); border-color: var(--err-line); }
+.box.ok { background: var(--ok-bg); border-color: var(--ok-line); }
+code { word-break: break-all; }
+[hidden] { display: none !important; }

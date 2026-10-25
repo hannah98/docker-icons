@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Send to Icons Repo",
+  "version": "1.0.0",
+  "description": "Right-click any image to upload it to your GitHub icons repo and copy its public URL.",
+  "permissions": ["contextMenus", "storage", "notifications", "clipboardWrite"],
+  "host_permissions": ["https://api.github.com/*", "<all_urls>"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "options_ui": { "page": "options.html", "open_in_tab": true },
+  "icons": { "16": "assets/icon16.png", "48": "assets/icon48.png", "128": "assets/icon128.png" }
+}

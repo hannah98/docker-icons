@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Send to icons repo – Options</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Send to icons repo – Options</h1>
+
+  <label for="owner">GitHub owner</label>
+  <input id="owner" type="text" placeholder="your-username" spellcheck="false" autocomplete="off">
+
+  <label for="repo">Repo</label>
+  <input id="repo" type="text" placeholder="your-repo" spellcheck="false" autocomplete="off">
+
+  <label for="branch">Branch</label>
+  <input id="branch" type="text" spellcheck="false" autocomplete="off">
+
+  <label for="folder">Folder in repo</label>
+  <input id="folder" type="text" spellcheck="false" autocomplete="off">
+
+  <label for="token">Fine-grained personal access token</label>
+  <input id="token" type="password" spellcheck="false" autocomplete="new-password">
+  <p id="token-state" class="muted"></p>
+
+  <label for="publicBase">Public URL base</label>
+  <input id="publicBase" type="text" spellcheck="false" autocomplete="off">
+  <p class="muted">The filename is appended to this. Leave blank to use the jsDelivr URL shown above. Change it when you move to Cloudflare Pages / Netlify.</p>
+
+  <div class="row">
+    <button id="save" class="primary">Save</button>
+    <button id="test">Test connection</button>
+    <button id="clear-token" class="danger">Remove saved token</button>
+  </div>
+  <div id="status" class="box" hidden></div>
+</main>
+<script type="module" src="options.js"></script>
+</body>
+</html>
